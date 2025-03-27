@@ -1,0 +1,45 @@
+baseURL: "https://zzhirong.com/"
+languageCode: "zh-cn"
+title: "zzhirong 的个人网站"
+theme: "papermod"
+
+taxonomies:
+  tag: "tags"
+  category: "categories"
+
+params:
+  description: "这是一个关于技术、生活和思考的个人博客。"
+  author: "zzhirong"
+  ShowToc: true
+  socialIcons:
+    - name: github
+      title: View Source on Github
+      url: "https://github.com/adityatelange/hugo-PaperMod"
+
+menu:
+  main:
+    - identifier: "home"
+      name: "首页"
+      url: "/"
+      weight: 10
+    - identifier: "posts"
+      name: "文章"
+      url: "/posts/"
+      weight: 20
+    - identifier: "tags"
+      name: "标签"
+      url: "/tags/"
+      weight: 30
+    - identifier: "about"
+      name: "关于"
+      url: "/about/"
+      weight: 40
+    - identifier: "rss"
+      name: "RSS"
+      url: "/index.xml"
+      weight: 50
+
+outputs:
+  home:
+    - "HTML"
+    - "RSS"

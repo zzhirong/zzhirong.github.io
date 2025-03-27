@@ -1,0 +1,44 @@
+name: Deploy Hugo Site to GitHub Pages and Purge Cloudflare Cache
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+
+      - name: Build with Hugo
+        run: hugo --minify
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          cname: zzhirong.com
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Purge Cloudflare Cache
+        uses: cloudflare/actions/purge@v12 # 使用 Cloudflare 官方 action 的较新版本
+        # 注意：确保你的 Cloudflare API Token 有 'Zone' -> 'Cache Purge' -> 'Purge' 权限
+        with:
+          token: ${{ secrets.CF_API_TOKEN }}
+          zone: ${{ secrets.CF_ZONE_ID }}
