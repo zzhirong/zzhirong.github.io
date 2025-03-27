@@ -1,0 +1,4 @@
+baseURL = 'https://blog.zzhirong.com/'
+languageCode = 'zh-cn'
+title = "zzhirong's blog"
+theme = 'papermod'
