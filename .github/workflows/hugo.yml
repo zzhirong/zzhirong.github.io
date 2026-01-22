@@ -42,18 +42,6 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: ${{ env.HUGO_EXTENDED }}
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install Dependencies
-        run: |
-          if [ -f package.json ]; then
-            npm ci
-          fi
-
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
