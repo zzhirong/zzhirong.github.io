@@ -10,7 +10,7 @@ Hello hugo
 
 ```go
 func main(){
-    fmt.Println("hello")
+    fmt.Println("hello hugo")
 }
 
 ```
